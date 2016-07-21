@@ -371,11 +371,11 @@ function createContext(options={}) {
         return;
       }
 
-      if (!this.drop.parentNode) {
+      if (this.drop && !this.drop.parentNode) {
         document.body.appendChild(this.drop);
       }
 
-      if (typeof this.tether !== 'undefined') {
+      if (typeof this.tether !== 'undefined' && this.tether.enable) {
         this.tether.enable();
       }
 
@@ -398,7 +398,7 @@ function createContext(options={}) {
     }
 
     _transitionEndHandler(e) {
-      if (e.target !== e.currentTarget){
+      if (e.target !== e.currentTarget || !this.drop){
         return;
       }
 
@@ -450,7 +450,7 @@ function createContext(options={}) {
 
     remove(event) {
       this.close(event);
-      if (this.drop.parentNode) {
+      if (this.drop && this.drop.parentNode) {
         this.drop.parentNode.removeChild(this.drop);
       }
     }
