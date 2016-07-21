@@ -398,7 +398,7 @@ function createContext(options={}) {
     }
 
     _transitionEndHandler(e) {
-      if (e.target !== e.currentTarget){
+      if (e.target !== e.currentTarget || !this.drop){
         return;
       }
 
