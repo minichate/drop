@@ -371,7 +371,7 @@ function createContext(options={}) {
         return;
       }
 
-      if (!this.drop.parentNode) {
+      if (this.drop && !this.drop.parentNode) {
         document.body.appendChild(this.drop);
       }
 
@@ -450,7 +450,7 @@ function createContext(options={}) {
 
     remove(event) {
       this.close(event);
-      if (this.drop.parentNode) {
+      if (this.drop && this.drop.parentNode) {
         this.drop.parentNode.removeChild(this.drop);
       }
     }
