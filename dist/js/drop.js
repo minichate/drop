@@ -1,4 +1,4 @@
-/*! tether-drop 1.4.3 */
+/*! tether-drop 1.4.4 */
 
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -424,7 +424,7 @@ function createContext() {
           document.body.appendChild(this.drop);
         }
 
-        if (typeof this.tether !== 'undefined') {
+        if (typeof this.tether !== 'undefined' && this.tether.enable) {
           this.tether.enable();
         }
 
