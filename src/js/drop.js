@@ -375,7 +375,7 @@ function createContext(options={}) {
         document.body.appendChild(this.drop);
       }
 
-      if (typeof this.tether !== 'undefined') {
+      if (typeof this.tether !== 'undefined' && this.tether.enable) {
         this.tether.enable();
       }
 
