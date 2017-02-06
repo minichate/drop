@@ -420,16 +420,18 @@ function createContext() {
           return;
         }
 
-        if (!this.drop.parentNode) {
+        if (this.drop && !this.drop.parentNode) {
           document.body.appendChild(this.drop);
         }
 
-        if (typeof this.tether !== 'undefined') {
+        if (typeof this.tether !== 'undefined' && this.drop) {
           this.tether.enable();
         }
 
-        addClass(this.drop, drop.classPrefix + '-open');
-        addClass(this.drop, drop.classPrefix + '-open-transitionend');
+        if (this.drop) {
+          addClass(this.drop, drop.classPrefix + '-open');
+          addClass(this.drop, drop.classPrefix + '-open-transitionend');
+        }
 
         setTimeout(function () {
           if (_this3.drop) {
@@ -437,11 +439,13 @@ function createContext() {
           }
         });
 
-        if (typeof this.tether !== 'undefined') {
+        if (typeof this.tether !== 'undefined' && this.drop) {
           this.tether.position();
         }
 
-        this.trigger('open');
+        if (this.drop) {
+          this.trigger('open');
+        }
 
         drop.updateBodyClasses();
       }
@@ -503,7 +507,7 @@ function createContext() {
       key: 'remove',
       value: function remove(event) {
         this.close(event);
-        if (this.drop.parentNode) {
+        if (this.drop && this.drop.parentNode) {
           this.drop.parentNode.removeChild(this.drop);
         }
       }
